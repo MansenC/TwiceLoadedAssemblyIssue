@@ -13,15 +13,10 @@
                     return;
                 }
 
-                Console.WriteLine($"Loaded {args.LoadedAssembly.FullName} => {Environment.StackTrace}");
+                Console.WriteLine($"========== Loaded {args.LoadedAssembly.FullName} => {args.LoadedAssembly.GetHashCode()}");
             };
 
-            RecompilerService.StaticInit();
-
-            var solutionPath = Path.Combine(AppContext.BaseDirectory, "../../RestorableProject/CSProject.sln");
-            Console.WriteLine($"Attempting to restore project at {solutionPath}");
-
-            RecompilerService.RestoreSolutionAt(solutionPath).Wait();
+            BugProducer.StaticInit();
         }
 
         internal static void Main(string[] args)
